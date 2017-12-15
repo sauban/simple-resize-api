@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { login, authorization } from './auth';
+import { validatePayload, patch } from './json_patch';
 
 const routes = Router();
 
@@ -28,5 +29,17 @@ routes.post('/login', login);
 routes.get('/protected', authorization, (req, res) => res.status(200).json({
 	message: 'Protected content'
 }));
+
+/**
+ * PUT /json
+ *Endpoint to patch json
+ * data
+ */
+
+routes.put('/json',
+	authorization,
+	validatePayload,
+	patch
+);
 
 export default routes;
