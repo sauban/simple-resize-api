@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import routes from './routes';
-import winston from 'winston';
 
 const app = express();
 app.disable('x-powered-by');

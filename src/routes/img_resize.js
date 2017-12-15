@@ -1,10 +1,6 @@
 import validUrl from 'valid-url';
 import sharp from 'sharp';
 import request from 'request';
-import assert from 'assert';
-import winston from 'winston';
-import { Readable } from 'stream';
-import { read } from 'fs';
 
 exports.checkUrl = (req, res, next) => {
 	const { url: imageUrl } = req.body;
@@ -36,19 +32,13 @@ exports.resize = (req, res) => {
 	const { url: imageUrl } = req.body;
 
 	res.writeHead(200, {
-          "Content-Type": "application/octet-stream",
-          "Content-Disposition": "attachment; filename=image50x50.png"
+          'Content-Type': 'application/octet-stream',
+          'Content-Disposition': 'attachment; filename=image50x50.png'
         });
 
-	try{
-		request(imageUrl)
+	request(imageUrl)
 		.pipe(thumbnailResize)
 		.pipe(res)
-	} catch ( err) {
-		winston.error(err.message);
-	}
-
-
 }
 
 const thumbnailResize = sharp().resize(50, 50).png()
