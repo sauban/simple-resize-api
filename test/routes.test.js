@@ -88,7 +88,7 @@ describe('GET /protected', async () => {
 	});
 });
 
-describe('PUT /json', async () => {
+describe('POST /json', async () => {
 	let tokenString;
 
 	beforeEach(async () => {
@@ -102,7 +102,7 @@ describe('PUT /json', async () => {
 
 	it('should return "Token header is not provided"', async () => {
 		const response = await request(app)
-			.put('/json')
+			.post('/json')
 			.expect(401);
 		expect(response.body).to.have.property('message');
 		expect(response.body.message).to.eql('Token header is not provided');
@@ -110,12 +110,12 @@ describe('PUT /json', async () => {
 
 	it('should return "Incomplete params"', async () => {
 		const response1 = await request(app)
-			.put('/json')
+			.post('/json')
 			.set('x-access-token', tokenString)
 			.send({ data: {} })
 			.expect(400);
 		const response2 = await request(app)
-			.put('/json')
+			.post('/json')
 			.set('x-access-token', tokenString)
 			.send({ patch: {} })
 			.expect(400);
@@ -127,7 +127,7 @@ describe('PUT /json', async () => {
 
 	it('should return "Invalid params"', async () => {
 		const response = await request(app)
-			.put('/json')
+			.post('/json')
 			.set('x-access-token', tokenString)
 			.send({ data: 9, patch: 'patchit' })
 			.expect(400);
@@ -143,7 +143,7 @@ describe('PUT /json', async () => {
 			}
 		};
 		const response = await request(app)
-			.put('/json')
+			.post('/json')
 			.set('x-access-token', tokenString)
 			.send(params)
 			.expect(400);
@@ -168,7 +168,7 @@ describe('PUT /json', async () => {
 			}
 		};
 		const response = await request(app)
-			.put('/json')
+			.post('/json')
 			.set('x-access-token', tokenString)
 			.send(params)
 			.expect(200);

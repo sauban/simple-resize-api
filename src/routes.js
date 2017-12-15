@@ -36,7 +36,7 @@ routes.get('/protected', authorization, (req, res) => res.status(200).json({
  * data
  */
 
-routes.put('/json',
+routes.post('/json',
 	authorization,
 	validatePayload,
 	patch
