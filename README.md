@@ -1,8 +1,14 @@
-# Express.js with Babel Boilerplate
+# A Simple Nodejs API
 A serverless microservice to demonstrate json-patch, image resizing 
 and jwt authentication and authorization usage in nodejs.
 
 ## Features
+
+- Login to obtain a JWT token
+- JSON patch to apply patches to a JSON object payload
+- Image resize to resize an image to a thumbnail size of 50x50
+
+## Technologies
 
 - [Express.js](https://expressjs.com/) as the web framework.
 - ES2017+ support with [Babel](https://babeljs.io/).
@@ -14,7 +20,7 @@ and jwt authentication and authorization usage in nodejs.
 
 ```sh
 # Clone the project
-git clone git@github.com:sauban/simple-api.git
+git clone git@github.com:sauban/simple-resize-api.git
 cd simple-api
 
 # Install dependencies
@@ -22,10 +28,10 @@ npm install
 
 ```
 
-Then you can begin development:
+Then you can start the application:
 
 ```sh
-npm run dev
+npm start
 ```
 
 This will launch a [nodemon](https://nodemon.io/) process for automatic server restarts when your code changes.
@@ -43,7 +49,7 @@ npm test
 You can also generate coverage with:
 
 ```sh
-npm test --coverage
+npm run coverage
 ```
 
 ### Linting
