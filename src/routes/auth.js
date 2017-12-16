@@ -1,6 +1,13 @@
 import jsonwebtoken from 'jsonwebtoken';
 import config from '../config';
 
+/**
+ * 
+ * @param {Object} req
+ * @param {Object} res 
+ * @param {Function} next 
+ */
+
 exports.authorization = (req, res, next) => {
   'use strict';
 
@@ -22,6 +29,13 @@ exports.authorization = (req, res, next) => {
   });
 };
 
+/**
+ * 
+ * @param {Object} user 
+ * @param {String} user.username
+ * @description user parameter contains
+ */
+
 const signToken = (user) => {
   'use strict';
 
@@ -29,6 +43,15 @@ const signToken = (user) => {
     expiresIn: config.tokenExpiry,
   });
 };
+
+/**
+ * 
+ * @param {Object} req 
+ * @param {Object} req.body
+ * @param {String} req.body.username
+ * @param {String} req.body.password
+ * @param {Object} res 
+ */
 
 exports.login = (req, res) => {
   'use strict';
