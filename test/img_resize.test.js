@@ -52,6 +52,16 @@ describe('POST /resize', async () => {
 		expect(response.body.message).to.eql('Url must point to an image file');
 	});
 
+	it('should return "Url is broken"', async () => {
+		const response = await request(app)
+			.post('/resize')
+			.set('x-access-token', tokenString)
+			.send({ url: 'http://fridayillustrated.com/wp-content/uploads/2013/11/6394349_n.jpg'})
+			.expect(400);
+		expect(response.body).to.have.property('message');
+		expect(response.body.message).to.eql('Image url is broken');
+	});
+
 	it('should resize image to 50x50', function (done) {
 		this.timeout(5000);
 		const url = 'http://fridayillustrated.com/wp-content/uploads/2013/11/63943_425931030823220_499384949_n.jpg';
@@ -59,7 +69,7 @@ describe('POST /resize', async () => {
 			.post('/resize')
 			.set('x-access-token', tokenString)
 			.send({ url })
-			.expect('Content-Type', 'application/octet-stream')
+			.expect('Content-Type', 'image/png')
 			.buffer()
 			.parse(binaryParser)
 			.expect(200)
