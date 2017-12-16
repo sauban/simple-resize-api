@@ -52,6 +52,17 @@ You can also generate coverage with:
 npm run coverage
 ```
 
+### Documentation
+
+API documentation is also important so I am using APIDOC.js to document the api endpoints
+
+Generate API docs using:
+
+```sh
+npm run docs
+```
+
+
 ### Linting
 
 Linting is set up using [ESLint](http://eslint.org/). It uses ESLint's default [eslint:recommended](https://github.com/eslint/eslint/blob/master/conf/eslint.json) rules. Feel free to use your own rules and/or extend another popular linting config (e.g. [airbnb's](https://www.npmjs.com/package/eslint-config-airbnb) or [standard](https://github.com/feross/eslint-config-standard)).
